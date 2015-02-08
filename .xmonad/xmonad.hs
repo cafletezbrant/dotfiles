@@ -277,9 +277,9 @@ myLogHook = return()
 -- By default, do nothing.
 myStartupHook = do
     setWMName "LG3D"
-    spawn "xloadimage -onroot -fullscreen /home/kipper/Pictures/Wallpapers/Hd-snow-wallpapers-43.jpg"
+    spawn "xloadimage -onroot -fullscreen ~/Pictures/Wallpapers/Hd-snow-wallpapers-43.jpg"
     spawn "dropbox start"
-    spawn "/home/kipper/startup/copy/x86_64/CopyAgent"
+    spawn "~/startup/copy/x86_64/CopyAgent"
     spawn "nautilus"
     spawn "pkill stalonetray && pkill nm-applet"
     spawn "pidgin"
