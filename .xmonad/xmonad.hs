@@ -1,7 +1,7 @@
 
 
 
---
+-- Perfect for Dell XPS 15 9530 with Ubuntu
 -- xmonad example config file.
 --
 -- A template showing all available configuration hooks,
