@@ -1,0 +1,38 @@
+Config { font = "-*-Fixed-Bold-R-Normal-*-17-*-*-*-*-*-*-*"
+        , borderColor = "black"
+        , border = TopB
+        , bgColor = "black"
+        , fgColor = "grey"
+        , position = Top
+	, lowerOnStart = False
+        , commands = [ Run Weather "KDCA" ["-t","<station>: <tempC>C <skyCondition>","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
+                        , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                        , Run Network "wlan0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                        , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+                        , Run Memory ["-t","Mem: <usedratio>%"] 10
+                        , Run Battery        [ "--template" , "Batt: <acstatus>"
+                             , "--Low"      , "10"        -- units: %
+                             , "--High"     , "80"        -- units: %
+                             , "--low"      , "red"
+                             , "--normal"   , "orange"
+                             , "--high"     , "green"
+
+                             , "--" -- battery specific options
+                                       -- discharging status
+                                       , "-o"	, "<left>% (<timeleft>)"
+                                       -- AC "on" status
+                                       , "-O"	, "<fc=#dAA520>Charging</fc>"
+                                       -- charged status
+                                       , "-i"	, "<fc=#006000>Charged</fc>"
+                             ] 50
+                        , Run Swap [] 10
+                        , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                        , Run StdinReader
+                        , Run Brightness ["-t", "<percent>"] 60
+                        ]
+        , sepChar = "%"
+        , alignSep = "}{"
+        , template = "%StdinReader% | %cpu% | %memory% | %battery% | %bright% | %eth0% - %wlan0% | %KDCA%}{ <fc=#ee9a00>%date%</fc>  "
+        }
+
+
