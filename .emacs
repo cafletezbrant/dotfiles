@@ -64,3 +64,5 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 (require 'browse-kill-ring)
+(add-hook 'comint-output-filter-functions
+'comint-watch-for-password-prompt)
