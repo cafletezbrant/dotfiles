@@ -285,6 +285,7 @@ myStartupHook = do
     spawn "pidgin"
     spawn "guake"
     spawn "synclient HorizTwoFingerScroll=1"
+    spawn "todo-indicator ~/todo.txt"
     spawn "sleep 10 && nm-applet"
     spawn "sleep 10 && stalonetray"
 ------------------------------------------------------------------------
