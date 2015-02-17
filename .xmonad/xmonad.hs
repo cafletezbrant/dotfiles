@@ -186,6 +186,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
  
+toggleStrutsKey XConfig{modMask = modm} = (modm, xK_b )
  
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
@@ -293,7 +294,16 @@ myStartupHook = do
  
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad =<< xmobar defaults 
+
+myPP = xmobarPP { 
+  ppCurrent = xmobarColor "#888888" "",
+  ppTitle = (\str -> ""), 
+  ppLayout = (\str -> ""),
+  ppHidden = (xmobarColor "#626262" ""),
+  ppHiddenNoWindows = (\str -> "")
+}
+
+main = xmonad =<< statusBar "xmobar" myPP toggleStrutsKey defaults 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will 
 -- use the defaults defined in xmonad/XMonad/Config.hs
