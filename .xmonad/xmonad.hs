@@ -77,8 +77,8 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
  
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#000000"
-myFocusedBorderColor = "#ffffff"
+myNormalBorderColor  = "#626262"
+myFocusedBorderColor = "#626262"
  
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -278,7 +278,6 @@ myLogHook = return()
 -- By default, do nothing.
 myStartupHook = do
     setWMName "LG3D"
-    spawn "xloadimage -onroot -fullscreen ~/Pictures/Wallpapers/Hd-snow-wallpapers-43.jpg"
     spawn "dropbox start"
     spawn "~/startup/copy/x86_64/CopyAgent"
     spawn "nautilus"
