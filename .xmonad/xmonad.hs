@@ -166,7 +166,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioNext), spawn "clementine --next")
     , ((0, xF86XK_AudioPrev), spawn "clementine --previous")
     -- screenshot
-    , ((0, xK_Print), spawn "sleep 0.2; scrot -s")
+    , ((0, xK_Print),                   spawn "sleep 0.2; scrot -s")
+    , ((modm, xK_Print),                spawn "scrot")
     ]
     ++
     --
