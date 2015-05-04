@@ -39,6 +39,8 @@
 (eval-after-load "tex-mode" '(fset 'tex-font-lock-suscript 'ignore))
 (setq org-export-with-sub-superscripts nil)
 
+(eval-after-load "python-mode" '(py-split-windows-on-execute-off))
+
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
 (global-set-key (kbd "C-x <left>") 'windmove-left)
@@ -59,4 +61,4 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 (add-to-list 'custom-theme-load-path "~/emacs.d/elpa")
-(load-theme 'solarized-light t)
+

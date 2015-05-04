@@ -23,14 +23,15 @@ import XMonad.Util.EZConfig(additionalKeys)
 import System.IO
 import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
-import XMonad.Layout.Fullscreen
+-- import XMonad.Layout.Fullscreen
 import XMonad.Hooks.ManageHelpers
 import Graphics.X11.ExtraTypes.XF86
 import Data.List
 import XMonad.Actions.CopyWindow
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Minimize
-
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Layout.ThreeColumns
  
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -156,7 +157,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_q     ), restart "xmonad" True)
 
     --lock screen
-    , ((modm .|. shiftMask, xK_l ), spawn "slock")
+    , ((modm .|. shiftMask, xK_l ), spawn "xscreensaver-command -lock")
 
     -- multimedia keys
     , ((0, xF86XK_AudioLowerVolume     ), spawn "pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -- -1.5%")
@@ -251,7 +252,10 @@ myManageHook = composeAll
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore 
-    , isFullscreen --> doFullFloat ]
+    , isFullscreen --> doFullFloat 
+    , className =? "Steam" --> doFullFloat
+    , className =? "steam" --> doFullFloat
+    ]
  
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -279,7 +283,6 @@ myLogHook = return()
 -- By default, do nothing.
 myStartupHook = do
     setWMName "LG3D"
-    spawn "dropbox start"
     spawn "~/startup/copy/x86_64/CopyAgent"
     spawn "nautilus"
     spawn "pkill stalonetray && pkill nm-applet"
@@ -287,8 +290,11 @@ myStartupHook = do
     spawn "guake"
     spawn "synclient HorizTwoFingerScroll=1"
     spawn "todo-indicator ~/todo.txt"
+    spawn "caffeine"
+    spawn "xscreensaver -nosplash"
     spawn "sleep 10 && nm-applet"
     spawn "sleep 10 && stalonetray"
+    spawn "sleep 10 && droopbox start"
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
  

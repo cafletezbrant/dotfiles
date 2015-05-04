@@ -1,4 +1,4 @@
-Config { font = "xft:Bitstream Vera Sans Mono:size=11:bold:antialias=true"
+Config { font = "xft:Bitstream Vera Sans Mono:size=12:bold:antialias=true"
         , borderColor = "black"
         , border = TopB
         , bgColor = "black"
@@ -32,7 +32,7 @@ Config { font = "xft:Bitstream Vera Sans Mono:size=11:bold:antialias=true"
                         ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% | %cpu% | %memory% | %battery% | %bright% | %eth0% - %wlan0% | %KDCA%}{ <fc=#ee9a00>%date%</fc>  "
+        , template = "%StdinReader% | %cpu% | %memory% | %battery% | %bright% | %eth0% - %wlan0% | %KDCA%}{ <fc=lightblue>%date%</fc>  "
         }
 
 
