@@ -32,6 +32,7 @@ import XMonad.Hooks.SetWMName
 import XMonad.Layout.Minimize
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.ThreeColumns
+import XMonad.Layout.ResizableTile
  
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -159,6 +160,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --lock screen
     , ((modm .|. shiftMask, xK_l ), spawn "xscreensaver-command -lock")
 
+    -- Shrink tile
+    , ((modm,	xK_a), sendMessage MirrorShrink)
+
+    -- Expand tile
+    , ((modm, xK_z), sendMessage MirrorExpand)
+
     -- multimedia keys
     , ((0, xF86XK_AudioLowerVolume     ), spawn "pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -- -1.5%")
     , ((0, xF86XK_AudioRaiseVolume     ), spawn "pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +1.5%")
@@ -218,16 +225,16 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = minimize (tiled ||| Mirror tiled ||| Full)
+myLayout = minimize ( tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = spacing 4 $ gaps [(U,60), (L,60), (R,60), (D,60)] $ Tall nmaster delta ratio
+     tiled   = spacing 4 $ gaps [(U,60), (L,60), (R,60), (D,60)] $ ResizableTall nmaster delta ratio []
  
      -- The default number of windows in the master pane
      nmaster = 1
  
      -- Default proportion of screen occupied by master pane
-     ratio   = 7/10
+     ratio   = 6/10
  
      -- Percent of screen to increment by when resizing panes
      delta   = 5/100
