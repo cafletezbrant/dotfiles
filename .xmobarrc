@@ -29,10 +29,11 @@ Config { font = "xft:Bitstream Vera Sans Mono:size=12:bold:antialias=true"
                         , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                         , Run StdinReader
                         , Run Brightness ["-t", "<percent>"] 60
+                        , Run Com "/home/kipper/get-volume.sh" [] "vol" 10
                         ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% | %cpu% | %memory% | %battery% | %bright% | %eth0% - %wlan0% | %KDCA%}{ <fc=lightblue>%date%</fc>  "
+        , template = "%StdinReader% | %cpu% | %memory% | %battery% | %bright% | %eth0% - %wlan0% | %KDCA% | %vol%}{ <fc=lightblue>%date%</fc>  "
         }
 
 

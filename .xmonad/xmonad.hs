@@ -1,6 +1,3 @@
-
-
-
 -- Perfect for Dell XPS 15 9530 with Ubuntu
 -- xmonad example config file.
 --
@@ -149,7 +146,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
  
     -- toggle the status bar gap (used with avoidStruts from Hooks.ManageDocks)
-    -- , ((modm , xK_b ), sendMessage ToggleStruts)
+    , ((modm , xK_b ), sendMessage ToggleStruts)
  
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
@@ -237,7 +234,7 @@ myLayout = minimize ( tiled ||| Mirror tiled ||| Full)
      ratio   = 6/10
  
      -- Percent of screen to increment by when resizing panes
-     delta   = 5/100
+     delta   = 3/100
  
 ------------------------------------------------------------------------
 -- Window rules:

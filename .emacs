@@ -1,10 +1,5 @@
 (custom-set-variables '(inhibit-startup-screen t))
 
-(setq py-install-directory "~/python-mode.el-6.1.3")
-(add-to-list 'load-path py-install-directory)
-(require 'python-mode)
-
-(setq py-shell-switch-buffers-on-execute-p t)
 (setq auto-mode-alist
       (append '(
 		("\\.emacs$" . emacs-lisp-mode)
@@ -17,19 +12,15 @@
 		("\\.sch$" . scheme-mode)
 		)auto-mode-alist))
 
-(add-hook 'python-mode-hook 'my-python-hook)
 
-(defun my-python-hook ()
-  (define-key python-mode-map (kbd "RET") 'newline-and-indent))
-
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")))
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
-  (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
-  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-  )
+(require 'package)
+(package-initialize)
+(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/") t)
+(elpy-enable)
 
 (require 'tex)
     (TeX-global-PDF-mode t)
@@ -38,8 +29,6 @@
 
 (eval-after-load "tex-mode" '(fset 'tex-font-lock-suscript 'ignore))
 (setq org-export-with-sub-superscripts nil)
-
-(eval-after-load "python-mode" '(py-split-windows-on-execute-off))
 
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
@@ -61,4 +50,9 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 (add-to-list 'custom-theme-load-path "~/emacs.d/elpa")
+
+(setq load-path
+    (append '("~/polymode" "~/polymode/modes")
+            load-path))
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
 
